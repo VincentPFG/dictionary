@@ -15,10 +15,19 @@
 </template>
 
 <script>
+
 export default {
-  name: 'IndexPage',
-  asyncData ({ query: { word } }) {
-    return { word: word ?? '' }
+  // asyncData ({ query: { word } }) {
+  //   return { word: word ?? '' }
+  // },
+  data () {
+    return { word: '' }
+  },
+  fetch () {
+    this.word = this.$nuxt.context.query.word
+  },
+  watch: {
+    '$route.query': '$fetch'
   }
 }
 </script>

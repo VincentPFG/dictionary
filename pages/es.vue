@@ -13,7 +13,6 @@
 
 <script>
 export default {
-  name: 'IndexPage',
   asyncData ({ query: { word } }) {
     return { word: word ?? '' }
   }
