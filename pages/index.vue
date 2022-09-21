@@ -1,5 +1,37 @@
 <template>
   <v-app dark>
+    <!-- <v-main> -->
+    <v-carousel v-if="language == 0" height="100%">
+      <v-carousel-item>
+        <iframe :src="`https://www.merriam-webster.com/dictionary/${word}`" />
+      </v-carousel-item>
+      <v-carousel-item>
+        <iframe :src="`https://en.wiktionary.org/wiki/${word}#Pronunciation`" />
+      </v-carousel-item>
+      <v-carousel-item>
+        <iframe :src="`https://www.wordreference.com/enfr/${word}`" />
+      </v-carousel-item>
+    </v-carousel>
+    <v-carousel v-if="language == 1" height="100%">
+      <v-carousel-item>
+        <iframe :src="`https://www.wordreference.com/esfr/${word}`" />
+      </v-carousel-item>
+      <v-carousel-item>
+        <iframe :src="`https://es.wiktionary.org/wiki/${word}#Etimología`" />
+      </v-carousel-item>
+    </v-carousel>
+    <v-carousel v-if="language == 2" height="100%">
+      <v-carousel-item>
+        <iframe :src="`https://www.wordreference.com/fren/${word}`" />
+      </v-carousel-item>
+      <v-carousel-item>
+        <iframe :src="`https://www.wordreference.com/fres/${word}`" />
+      </v-carousel-item>
+      <v-carousel-item>
+        <iframe :src="`https://fr.wiktionary.org/wiki/${word}`" />
+      </v-carousel-item>
+    </v-carousel>
+    <!-- </v-main> -->
     <v-app-bar
 
       dense
@@ -29,19 +61,6 @@
         </v-btn>
       </v-btn-toggle>
     </v-app-bar>
-    <!-- <v-main> -->
-    <v-carousel v-if="language == 0" height="100%">
-      <v-carousel-item>
-        <iframe :src="`https://www.merriam-webster.com/dictionary/${word}`" />
-      </v-carousel-item>
-      <v-carousel-item>
-        <iframe :src="`https://en.wiktionary.org/wiki/${word}#Pronunciation`" />
-      </v-carousel-item>
-      <v-carousel-item>
-        <iframe :src="`https://www.wordreference.com/enfr/${word}`" />
-      </v-carousel-item>
-    </v-carousel>
-    <!-- </v-main> -->
   </v-app>
 </template>
 
