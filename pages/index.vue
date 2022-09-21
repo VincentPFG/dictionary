@@ -39,14 +39,20 @@
       <v-spacer />
       <!-- <v-form> -->
       <v-text-field
-        v-model="word"
+        v-model="search"
         dense
-        name="word"
         outlined
         autofocus
         hide-details
         autocapitalize="none"
-      />
+        @keyup.enter="({target:{value}})=>word=search"
+      >
+        <template #append>
+          <v-btn icon small @click="({currentTarget})=>{search='';currentTarget.focus();}">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </template>
+      </v-text-field>
       <!-- </v-form> -->
       <v-spacer />
       <v-btn-toggle v-model="language" mandatory>
@@ -69,7 +75,7 @@
 export default {
   layout: 'empty',
   data () {
-    return { word: '', language: [] }
+    return { word: '', language: [], search: '' }
   }
 }
 </script>
