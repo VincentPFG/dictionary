@@ -1,6 +1,5 @@
 <template>
   <v-app dark>
-    <!-- <v-main> -->
     <v-carousel v-if="language == 0" height="100%">
       <v-carousel-item>
         <iframe :src="`https://www.merriam-webster.com/dictionary/${word}`" />
@@ -31,27 +30,20 @@
         <iframe :src="`https://fr.wiktionary.org/wiki/${word}`" />
       </v-carousel-item>
     </v-carousel>
-    <!-- </v-main> -->
     <v-app-bar
 
       dense
     >
       <v-spacer />
-      <v-form @submit.prevent="word=search">
+      <v-form @submit.prevent="({currentTarget})=>{word=search}">
         <v-text-field
           v-model="search"
           dense
           outlined
-          autofocus
           hide-details
           autocapitalize="none"
-        >
-          <template #append>
-            <v-btn icon small @click="({currentTarget})=>{search='';currentTarget.focus();}">
-              <v-icon>mdi-close</v-icon>
-            </v-btn>
-          </template>
-        </v-text-field>
+          clearable
+        />
       </v-form>
       <v-spacer />
       <v-btn-toggle v-model="language" mandatory>
