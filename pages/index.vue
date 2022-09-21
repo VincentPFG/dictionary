@@ -37,23 +37,22 @@
       dense
     >
       <v-spacer />
-      <!-- <v-form> -->
-      <v-text-field
-        v-model="search"
-        dense
-        outlined
-        autofocus
-        hide-details
-        autocapitalize="none"
-        @keyup.enter="({target:{value}})=>word=search"
-      >
-        <template #append>
-          <v-btn icon small @click="({currentTarget})=>{search='';currentTarget.focus();}">
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
-        </template>
-      </v-text-field>
-      <!-- </v-form> -->
+      <v-form @submit.prevent="word=search">
+        <v-text-field
+          v-model="search"
+          dense
+          outlined
+          autofocus
+          hide-details
+          autocapitalize="none"
+        >
+          <template #append>
+            <v-btn icon small @click="({currentTarget})=>{search='';currentTarget.focus();}">
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
+          </template>
+        </v-text-field>
+      </v-form>
       <v-spacer />
       <v-btn-toggle v-model="language" mandatory>
         <v-btn>
