@@ -35,16 +35,14 @@
       dense
     >
       <v-spacer />
-      <v-form @submit.prevent="({currentTarget})=>{word=search}">
-        <v-text-field
-          v-model="search"
-          dense
-          outlined
-          hide-details
-          autocapitalize="none"
-          clearable
-        />
-      </v-form>
+      <v-text-field
+        dense
+        outlined
+        hide-details
+        autocapitalize="none"
+        clearable
+        @keyup.enter="({target})=>{word=target.value;target.blur()}"
+      />
       <v-spacer />
       <v-btn-toggle v-model="language" mandatory>
         <v-btn>
