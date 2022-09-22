@@ -45,6 +45,8 @@
     <v-app-bar dense>
       <v-spacer />
       <v-text-field
+        ref="input"
+        autofocus
         dense
         outlined
         hide-details
@@ -54,14 +56,8 @@
       />
       <v-spacer />
       <v-btn-toggle v-model="language" mandatory>
-        <v-btn>
-          EN
-        </v-btn>
-        <v-btn>
-          ES
-        </v-btn>
-        <v-btn>
-          FR
+        <v-btn v-for="lang in ['EN','ES','FR']" @click="slide=0">
+          {{ lang }}
         </v-btn>
       </v-btn-toggle>
     </v-app-bar>
@@ -76,6 +72,9 @@ export default {
   },
   watch: {
     language () { this.slide = 0 }
+  },
+  updated () {
+    if (!this.$vuetify.breakpoint.mobile) { this.$refs.input.focus(); setTimeout(() => this.$refs.input.focus(), 2000) }
   }
 }
 </script>
