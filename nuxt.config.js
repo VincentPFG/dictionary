@@ -47,6 +47,9 @@ export default {
       lang: "en",
       name: title,
     },
+    meta: {
+      name: title,
+    },
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
