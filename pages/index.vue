@@ -45,15 +45,12 @@
     <v-app-bar dense>
       <v-spacer />
       <v-text-field
-        ref="input"
-        v-model="search"
-        autofocus
         dense
         outlined
         hide-details
         autocapitalize="none"
         clearable
-        @keyup.enter="word=search;search=''"
+        @keyup.enter="({target})=>{target.blur();word=target.value;slide=0}"
       />
       <v-spacer />
       <v-btn-toggle v-model="language" mandatory>
@@ -68,32 +65,8 @@
 <script>
 
 export default {
-  name: 'IndexPage',
   data () {
-    return { word: '', language: [], slide: 0, search: '' }
-  },
-  watch: {
-    language () { this.slide = 0 }
-  },
-  mounted () {
-    document.addEventListener('keyup', ({ key, shiftKey }) => {
-      if (key === ' ') { this.$refs.input.focus() }
-
-      if (key === 'ArrowLeft') { this.slide-- }
-      if (key === 'ArrowRight') { this.slide++ }
-      if (key === 'ArrowUp') { this.language-- }
-      if (key === 'ArrowDown') { this.language++ }
-
-      if (key === 'Backspace' && shiftKey) { this.search = '' }
-    })
-  },
-  updated () {
-    this.$refs.input.focus()
-
-    setTimeout(() => {
-      // document.activeElement.blur()
-      this.$refs.input.focus()
-    }, 2000)
+    return { word: '', language: [], slide: 0 }
   }
 }
 </script>
