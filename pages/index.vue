@@ -46,17 +46,18 @@
       <v-spacer />
       <v-text-field
         ref="input"
+        v-model="search"
         autofocus
         dense
         outlined
         hide-details
         autocapitalize="none"
         clearable
-        @keyup.enter="({target})=>{word=target.value;target.blur()}"
+        @keyup.enter="word=search;search=''"
       />
       <v-spacer />
       <v-btn-toggle v-model="language" mandatory>
-        <v-btn v-for="lang in ['EN','ES','FR']" @click="slide=0">
+        <v-btn v-for="lang in ['EN','ES','FR']" :key="lang" @click="slide=0">
           {{ lang }}
         </v-btn>
       </v-btn-toggle>
@@ -68,13 +69,29 @@
 
 export default {
   data () {
-    return { word: '', language: [], slide: 0 }
+    return { word: '', language: [], slide: 0, search: '' }
   },
   watch: {
     language () { this.slide = 0 }
   },
+  mounted () {
+    document.addEventListener('keyup', ({ key, shiftKey }) => {
+      if (key == ' ') { this.$refs.input.focus() }
+
+      if (key == 'ArrowLeft') { this.slide-- }
+      if (key == 'ArrowRight') { this.slide++ }
+      if (key == 'ArrowUp') { this.language-- }
+      if (key == 'ArrowDown') { this.language++ }
+
+      if (key == 'Backspace' && shiftKey) { this.search = '' }
+    })
+  },
   updated () {
-    if (!this.$vuetify.breakpoint.mobile) { this.$refs.input.focus(); setTimeout(() => this.$refs.input.focus(), 2000) }
+    this.$refs.input.focus()
+    setTimeout(() => {
+      // document.activeElement.blur()
+      this.$refs.input.focus()
+    }, 2_000)
   }
 }
 </script>
