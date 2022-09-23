@@ -68,6 +68,7 @@
 <script>
 
 export default {
+  name: 'IndexPage',
   data () {
     return { word: '', language: [], slide: 0, search: '' }
   },
@@ -76,22 +77,23 @@ export default {
   },
   mounted () {
     document.addEventListener('keyup', ({ key, shiftKey }) => {
-      if (key == ' ') { this.$refs.input.focus() }
+      if (key === ' ') { this.$refs.input.focus() }
 
-      if (key == 'ArrowLeft') { this.slide-- }
-      if (key == 'ArrowRight') { this.slide++ }
-      if (key == 'ArrowUp') { this.language-- }
-      if (key == 'ArrowDown') { this.language++ }
+      if (key === 'ArrowLeft') { this.slide-- }
+      if (key === 'ArrowRight') { this.slide++ }
+      if (key === 'ArrowUp') { this.language-- }
+      if (key === 'ArrowDown') { this.language++ }
 
-      if (key == 'Backspace' && shiftKey) { this.search = '' }
+      if (key === 'Backspace' && shiftKey) { this.search = '' }
     })
   },
   updated () {
     this.$refs.input.focus()
+
     setTimeout(() => {
       // document.activeElement.blur()
       this.$refs.input.focus()
-    }, 2_000)
+    }, 2000)
   }
 }
 </script>
