@@ -45,18 +45,16 @@
     <v-app-bar dense>
       <v-spacer />
       <v-text-field
-        v-model="search"
         dense
         outlined
         hide-details
         autocapitalize="none"
         clearable
-        @focus="search=''"
-        @keyup.enter="({target})=>{target.blur();handleSearch()}"
+        @keyup.enter="({target})=>{word=target.value;slide=0;target.blur()}"
       />
       <v-spacer />
       <v-btn-toggle v-model="language" mandatory>
-        <v-btn v-for="lang in ['EN','ES','FR']" :key="lang" @click="handleSearch">
+        <v-btn v-for="lang in ['EN','ES','FR']" :key="lang" @click="slide=0">
           {{ lang }}
         </v-btn>
       </v-btn-toggle>
@@ -68,12 +66,7 @@
 
 export default {
   data () {
-    return { word: '', language: [], slide: 0, search: '' }
-  },
-  methods: {
-    handleSearch () {
-      this.word = this.search; this.slide = 0
-    }
+    return { word: '', language: [], slide: 0 }
   }
 }
 </script>
