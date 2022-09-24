@@ -52,12 +52,11 @@
         autocapitalize="none"
         clearable
         @focus="search=''"
-        @blur="word=search;slide=0"
-        @keyup.enter="({target})=>{target.blur()}"
+        @keyup.enter="({target})=>{target.blur();handleSearch()}"
       />
       <v-spacer />
       <v-btn-toggle v-model="language" mandatory>
-        <v-btn v-for="lang in ['EN','ES','FR']" :key="lang" @click="slide=0">
+        <v-btn v-for="lang in ['EN','ES','FR']" :key="lang" @click="handleSearch">
           {{ lang }}
         </v-btn>
       </v-btn-toggle>
@@ -70,6 +69,11 @@
 export default {
   data () {
     return { word: '', language: [], slide: 0, search: '' }
+  },
+  methods: {
+    handleSearch () {
+      this.word = this.search; this.slide = 0
+    }
   }
 }
 </script>
