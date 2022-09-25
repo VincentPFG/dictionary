@@ -50,7 +50,7 @@
         hide-details
         autocapitalize="none"
         clearable
-        @keyup.enter="({target})=>{word=target.value;slide=0;target.blur()}"
+        @keyup.enter="({target})=>{word=target.value;target.blur()}"
       />
       <v-spacer />
       <v-btn-toggle v-model="language" mandatory>
